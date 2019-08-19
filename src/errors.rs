@@ -1,32 +1,32 @@
 pub type Result<T> = ::std::result::Result<T, Error>;
 
 /// Error types
-#[derive(Debug, Fail)]
+#[derive(Debug)]
 pub enum Error {
-    #[fail(display = "invalid padding scheme")]
+    //#[fail(display = "invalid padding scheme")]
     InvalidPaddingScheme,
-    #[fail(display = "decryption error")]
+    //#[fail(display = "decryption error")]
     Decryption,
-    #[fail(display = "verification error")]
+    //#[fail(display = "verification error")]
     Verification,
-    #[fail(display = "message too long")]
+    //#[fail(display = "message too long")]
     MessageTooLong,
-    #[fail(display = "input must be hashed")]
+    //#[fail(display = "input must be hashed")]
     InputNotHashed,
-    #[fail(display = "nprimes must be >= 2")]
+    //#[fail(display = "nprimes must be >= 2")]
     NprimesTooSmall,
-    #[fail(display = "too few primes of given length to generate an RSA key")]
+    //#[fail(display = "too few primes of given length to generate an RSA key")]
     TooFewPrimes,
-    #[fail(display = "invalid prime value")]
+    //#[fail(display = "invalid prime value")]
     InvalidPrime,
-    #[fail(display = "invalid modulus")]
+    //#[fail(display = "invalid modulus")]
     InvalidModulus,
-    #[fail(display = "invalid exponent")]
+    //#[fail(display = "invalid exponent")]
     InvalidExponent,
-    #[fail(display = "public exponent too small")]
+    //#[fail(display = "public exponent too small")]
     PublicExponentTooSmall,
-    #[fail(display = "public exponent too large")]
+    //#[fail(display = "public exponent too large")]
     PublicExponentTooLarge,
-    #[fail(display = "internal error")]
+    //#[fail(display = "internal error")]
     Internal,
 }

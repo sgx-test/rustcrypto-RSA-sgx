@@ -1,5 +1,7 @@
 /// A generic trait that exposes the information that is needed for a hash function to be
 /// used in `sign` and `verify.`.
+use std::prelude::v1::*;
+
 pub trait Hash {
     /// Returns the length in bytes of a digest.
     fn size(&self) -> usize;
