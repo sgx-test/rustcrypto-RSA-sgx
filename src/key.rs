@@ -1,3 +1,4 @@
+use std::prelude::v1::*;
 use num_bigint::traits::ModInverse;
 use num_bigint::Sign::Plus;
 use num_bigint::{BigInt, BigUint};
