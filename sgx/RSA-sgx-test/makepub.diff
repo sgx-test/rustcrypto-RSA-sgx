@@ -1,0 +1,74 @@
+diff --git a/src/key.rs b/src/key.rs
+index 03bc9b0..06a57fd 100644
+--- a/src/key.rs
++++ b/src/key.rs
+@@ -23,8 +23,8 @@ lazy_static! {
+ #[derive(Debug, Clone, PartialEq, Eq)]
+ #[cfg_attr(feature = "serde1", derive(Serialize, Deserialize))]
+ pub struct RSAPublicKey {
+-    n: BigUint,
+-    e: BigUint,
++    pub n: BigUint,
++    pub e: BigUint,
+ }
+ 
+ /// Represents a whole RSA key, public and private parts.
+@@ -32,16 +32,16 @@ pub struct RSAPublicKey {
+ #[cfg_attr(feature = "serde1", derive(Serialize, Deserialize))]
+ pub struct RSAPrivateKey {
+     /// Modulus
+-    n: BigUint,
++    pub n: BigUint,
+     /// Public exponent
+-    e: BigUint,
++    pub e: BigUint,
+     /// Private exponent
+-    d: BigUint,
++    pub d: BigUint,
+     /// Prime factors of N, contains >= 2 elements.
+-    primes: Vec<BigUint>,
++    pub primes: Vec<BigUint>,
+     /// precomputed values to speed up private operations
+     #[cfg_attr(feature = "serde1", serde(skip))]
+-    pub(crate) precomputed: Option<PrecomputedValues>,
++    pub precomputed: Option<PrecomputedValues>,
+ }
+ 
+ impl PartialEq for RSAPrivateKey {
+@@ -67,7 +67,7 @@ impl Zeroize for RSAPrivateKey {
+ }
+ 
+ #[derive(Debug, Clone)]
+-pub(crate) struct PrecomputedValues {
++pub struct PrecomputedValues {
+     /// D mod (P-1)
+     pub(crate) dp: BigUint,
+     /// D mod (Q-1)
+diff --git a/src/lib.rs b/src/lib.rs
+index a31d98c..948b2ba 100644
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -66,8 +66,8 @@ pub mod hash;
+ /// Supported padding schemes.
+ pub mod padding;
+ 
+-mod key;
+-mod pkcs1v15;
++pub mod key;
++pub mod pkcs1v15;
+ 
+ pub use self::key::{PublicKey, RSAPrivateKey, RSAPublicKey};
+ pub use self::padding::PaddingScheme;
+diff --git a/src/pkcs1v15.rs b/src/pkcs1v15.rs
+index 47e65df..2356f37 100644
+--- a/src/pkcs1v15.rs
++++ b/src/pkcs1v15.rs
+@@ -242,7 +242,7 @@ fn decrypt_inner<R: Rng>(
+ /// Fills the provided slice with random values, which are guranteed
+ /// to not be zero.
+ #[inline]
+-fn non_zero_random_bytes<R: Rng>(rng: &mut R, data: &mut [u8]) {
++pub fn non_zero_random_bytes<R: Rng>(rng: &mut R, data: &mut [u8]) {
+     rng.fill(data);
+ 
+     for el in data {

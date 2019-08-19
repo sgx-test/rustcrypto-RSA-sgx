@@ -1,3 +1,4 @@
+use std::prelude::v1::*;
 use num_bigint::{BigInt, BigUint, IntoBigInt, IntoBigUint, ModInverse, RandBigInt, ToBigInt};
 use num_traits::{One, Signed, Zero};
 use rand::Rng;

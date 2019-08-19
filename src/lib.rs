@@ -1,3 +1,4 @@
+#![feature(custom_attribute)]
 #![doc(html_logo_url = "https://raw.githubusercontent.com/RustCrypto/meta/master/logo_small.png")]
 //! RSA Implementation in pure Rust.
 //!
@@ -25,12 +26,19 @@
 //! assert_eq!(&data[..], &dec_data[..]);
 //! ```
 //!
+#![cfg_attr(all(feature = "mesalock_sgx",
+                not(target_env = "sgx")), no_std)]
+#![cfg_attr(all(target_env = "sgx", target_vendor = "mesalock"), feature(rustc_private))]
+
+#[cfg(all(feature = "mesalock_sgx", not(target_env = "sgx")))]
+#[macro_use]
+extern crate sgx_tstd as std;
 
 #[macro_use]
 extern crate lazy_static;
 
-#[macro_use]
-extern crate failure;
+//#[macro_use]
+//extern crate failure;
 extern crate num_iter;
 extern crate rand;
 extern crate subtle;
