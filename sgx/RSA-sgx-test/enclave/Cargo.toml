@@ -18,7 +18,7 @@ sha-1 = { git = "https://github.com/mesalock-linux/rustcrypto-hashes-sgx" }
 serde_test = { git = "https://github.com/mesalock-linux/serde-sgx" }
 serde = { git = "https://github.com/mesalock-linux/serde-sgx", features = ["derive"] }
 base64 = { git = "https://github.com/mesalock-linux/rust-base64-sgx" }
-rand = { git = "https://github.com/mesalock-linux/rand-sgx", tag = "v0.6.5_sgx1.1.1" }
+rand = { git = "https://github.com/mesalock-linux/rand-sgx", tag = "v0.7.3_sgx1.1.2" }
 num-traits = { git = "https://github.com/mesalock-linux/num-traits-sgx" }
 num-bigint = { git = "https://github.com/mesalock-linux/num-bigint-sgx", branch = "dig", package = "num-bigint-dig" }
 zeroize = { version = "1.1.0", features = ["alloc"] }
